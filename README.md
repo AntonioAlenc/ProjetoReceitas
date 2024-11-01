@@ -20,3 +20,6 @@ Ideal para pessoas interessadas em culinária, que buscam novas receitas e desej
 ## Dependências
 - **PDO**: Conexão com o MySQL
 - **Sessões PHP**: Gerenciamento básico de visualização
+
+---
+
