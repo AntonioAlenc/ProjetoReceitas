@@ -25,6 +25,4 @@ Ideal para pessoas interessadas em culinária, que buscam novas receitas e desej
 
 ## Diagrama ER do Banco de Dados
 
-Aqui está o diagrama ER que define a estrutura do banco de dados:
-
 ![Diagrama ER do Projeto](<Diagrama ER Receitas.jpeg>)
