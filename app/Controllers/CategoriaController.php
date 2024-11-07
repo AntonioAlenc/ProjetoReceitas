@@ -1,51 +1,15 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
 
-class Categoria {
-    private $id;
-    private $nome;
-    private $descricao;
-
-    public function __construct($id = null, $nome = null, $descricao = null) {
-        $this->id = $id;
-        $this->nome = $nome;
-        $this->descricao = $descricao;
-    }
-
-    public function getId() {
-        return $this->id;
-    }
-
-    public function getNome() {
-        return $this->nome;
-    }
-
-    public function setNome($nome) {
-        $this->nome = $nome;
-    }
-
-    public function getDescricao() {
-        return $this->descricao;
-    }
-
-    public function setDescricao($descricao) {
-        $this->descricao = $descricao;
-    }
-
+class CategoriaController {
+    
     public static function listarCategorias() {
         global $pdo;
         $sql = "SELECT * FROM Categorias";
         $stmt = $pdo->query($sql);
-        $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        $categoriaObjects = [];
-        foreach ($categorias as $categoria) {
-            $categoriaObjects[] = new Categoria($categoria['id'], $categoria['nome'], $categoria['descricao']);
-        }
-        
-        return $categoriaObjects;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
+    
     public static function criarCategoria($nome, $descricao) {
         global $pdo;
         $sql = "INSERT INTO Categorias (nome, descricao) VALUES (:nome, :descricao)";
