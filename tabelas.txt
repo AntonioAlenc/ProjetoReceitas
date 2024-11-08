@@ -1,0 +1,20 @@
+USE projeto_receitas;
+select * from receitas
+
+CREATE TABLE categorias (
+    id  serial PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS receitas (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    ingredientes TEXT NOT NULL,
+    modo_preparo TEXT NOT NULL,
+    categoria_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE SET NULL
+);
+
+insert into receitas(nome,ingredientes,modo_preparo,categoria_id) values ('bolo','CENOURA','MEXE MT',1)
