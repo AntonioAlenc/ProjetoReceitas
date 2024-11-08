@@ -1,34 +1,45 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+
+namespace App\Controllers;
+
+use App\models\Categoria as CategoriaModel;
 
 class CategoriaController {
-    
-    public static function listarCategorias() {
-        global $pdo;
-        $sql = "SELECT * FROM Categorias";
-        $stmt = $pdo->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-    public static function criarCategoria($nome, $descricao) {
-        global $pdo;
-        $sql = "INSERT INTO Categorias (nome, descricao) VALUES (:nome, :descricao)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['nome' => $nome, 'descricao' => $descricao]);
+
+    public static function criarCategoria($dados) {
+        if (empty($dados['nome'])) {
+            return json_encode(['erro' => 'O nome da categoria é obrigatório']);
+        }
+
+        CategoriaModel::criar($dados);
+        return json_encode(['mensagem' => 'Categoria criada com sucesso']);
     }
 
-    public static function atualizarCategoria($id, $nome, $descricao) {
-        global $pdo;
-        $sql = "UPDATE Categorias SET nome = :nome, descricao = :descricao WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id' => $id, 'nome' => $nome, 'descricao' => $descricao]);
+    public static function listarCategorias() {
+        $categorias = CategoriaModel::listarTodas();
+        return json_encode($categorias);
+    }
+
+    public static function listarCategoriaPorId($id) {
+        $categoria = CategoriaModel::listarPorId($id);
+        if ($categoria) {
+            return json_encode($categoria);
+        }
+        return json_encode(['erro' => 'Categoria não encontrada']);
+    }
+
+    public static function atualizarCategoria($id, $dados) {
+        if (empty($dados['nome'])) {
+            return json_encode(['erro' => 'O nome da categoria é obrigatório']);
+        }
+
+        CategoriaModel::atualizar($id, $dados);
+        return json_encode(['mensagem' => 'Categoria atualizada com sucesso']);
     }
 
     public static function excluirCategoria($id) {
-        global $pdo;
-        $sql = "DELETE FROM Categorias WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id' => $id]);
+        CategoriaModel::excluir($id);
+        return json_encode(['mensagem' => 'Categoria excluída com sucesso']);
     }
 }
 ?>

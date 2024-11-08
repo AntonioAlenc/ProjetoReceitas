@@ -1,70 +1,43 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+namespace App\models;
+
+use Config\database;
+use PDO;
 
 class Categoria {
-    private $id;
-    private $nome;
-    private $descricao;
 
-    public function __construct($id = null, $nome = null, $descricao = null) {
-        $this->id = $id;
-        $this->nome = $nome;
-        $this->descricao = $descricao;
+    public static function criar($dados) {
+        $pdo = database::conectar();
+        $stmt = $pdo->prepare("INSERT INTO categorias (nome) VALUES (?)");
+        $stmt->execute([$dados['nome']]);
     }
 
-    public function getId() {
-        return $this->id;
+    public static function listarTodas() {
+        $pdo = database::conectar();
+        $stmt = $pdo->query("SELECT * FROM categorias");
+  
+        $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $res;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public static function listarPorId($id) {
+        $pdo = database::conectar();
+        $stmt = $pdo->prepare("SELECT * FROM categorias WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public static function atualizar($id, $dados) {
+        $pdo = database::conectar();
+        $stmt = $pdo->prepare("UPDATE categorias SET nome = ? WHERE id = ?");
+        $stmt->execute([$dados['nome'], $id]);
     }
 
-    public function getDescricao() {
-        return $this->descricao;
-    }
-
-    public function setDescricao($descricao) {
-        $this->descricao = $descricao;
-    }
-
-    public static function listarCategorias() {
-        global $pdo;
-        $sql = "SELECT * FROM Categorias";
-        $stmt = $pdo->query($sql);
-        $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        $categoriaObjects = [];
-        foreach ($categorias as $categoria) {
-            $categoriaObjects[] = new Categoria($categoria['id'], $categoria['nome'], $categoria['descricao']);
-        }
-        
-        return $categoriaObjects;
-    }
-
-    public static function criarCategoria($nome, $descricao) {
-        global $pdo;
-        $sql = "INSERT INTO Categorias (nome, descricao) VALUES (:nome, :descricao)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['nome' => $nome, 'descricao' => $descricao]);
-    }
-
-    public static function atualizarCategoria($id, $nome, $descricao) {
-        global $pdo;
-        $sql = "UPDATE Categorias SET nome = :nome, descricao = :descricao WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id' => $id, 'nome' => $nome, 'descricao' => $descricao]);
-    }
-
-    public static function excluirCategoria($id) {
-        global $pdo;
-        $sql = "DELETE FROM Categorias WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id' => $id]);
+    public static function excluir($id) {
+        $pdo = database::conectar();
+        $stmt = $pdo->prepare("DELETE FROM categorias WHERE id = ?");
+        $stmt->execute([$id]);
     }
 }
 ?>
