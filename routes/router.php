@@ -6,17 +6,15 @@ use App\Controllers\ReceitaController;
 require_once '../app/controllers/CategoriaController.php';
 require_once '../app/controllers/ReceitaController.php';
 
-// Análise da URL e definição da rota com base no método HTTP
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-// Função auxiliar para remover parâmetros da URL
 function getRoutePath($uri) {
     return parse_url($uri, PHP_URL_PATH);
 }
 
-// Definindo as rotas
 switch (getRoutePath($requestUri)) {
+    
     case '/categorias':
         if ($requestMethod === 'GET') {
             echo CategoriaController::listarCategorias();
@@ -64,4 +62,3 @@ switch (getRoutePath($requestUri)) {
         echo json_encode(["erro" => "Rota não encontrada"]);
         break;
 }
-?>
