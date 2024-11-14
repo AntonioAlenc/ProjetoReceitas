@@ -17,13 +17,15 @@ function openCategoryModal(id = null) {
         categoryName.value = '';
     }
 
-    const categoryModal = new bootstrap.Modal(document.getElementById('categoryModal'));
-    categoryModal.show();
+    document.getElementById('categoryModal').style.display = 'flex';
+}
+
+function closeCategoryModal() {
+    document.getElementById('categoryModal').style.display = 'none';
 }
 
 function saveCategory(event) {
     event.preventDefault();
-
     const id = document.getElementById('categoryId').value;
     const name = document.getElementById('categoryName').value;
 
@@ -32,6 +34,7 @@ function saveCategory(event) {
     } else {
         createCategory(name);
     }
+    closeCategoryModal();
 }
 
 function createCategory(name) {
@@ -42,7 +45,7 @@ function createCategory(name) {
         data: JSON.stringify({ name }),
         success: (newCategory) => {
             addCategoryToTable(newCategory);
-            $('#categoryModal').modal('hide');
+            closeCategoryModal();
         },
         error: (xhr, status, error) => {
             console.error("Erro ao criar categoria:", error);
@@ -52,13 +55,13 @@ function createCategory(name) {
 
 function updateCategory(id, name) {
     $.ajax({
-        url: `/categorias/${id}`, 
+        url: `/categorias/${id}`,
         method: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify({ name }),
         success: (updatedCategory) => {
             document.getElementById(`category-${id}`).textContent = updatedCategory.name;
-            $('#categoryModal').modal('hide');
+            closeCategoryModal();
         },
         error: (xhr, status, error) => {
             console.error("Erro ao atualizar categoria:", error);
@@ -69,7 +72,7 @@ function updateCategory(id, name) {
 function deleteCategory(id) {
     if (confirm('Tem certeza que deseja excluir esta categoria?')) {
         $.ajax({
-            url: `/categorias/${id}`, 
+            url: `/categorias/${id}`,
             method: 'DELETE',
             success: () => {
                 document.getElementById(`row-${id}`).remove();
@@ -83,7 +86,7 @@ function deleteCategory(id) {
 
 function loadCategories() {
     $.ajax({
-        url: '/categorias', 
+        url: '/categorias',
         method: 'GET',
         success: (categories) => {
             categories.forEach(category => addCategoryToTable(category));

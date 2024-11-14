@@ -3,60 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Receitas</title>
-    <link href="css/estilos.css" rel="stylesheet">
+    <title>Projeto Receitas - Categorias</title>
+    <link href="css/categorias.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-<header class="main-header">
+<header class="main-header color5">
     <div class="container">
         <div class="header-logo">
-            <img src="logo.png" alt="Logo">
-            <h1>TonyTips</h1>
+            <img src="logo.png" alt="Logotipo" class="logo-img">
         </div>
         <nav class="nav-menu">
-            <a href="#">Alta Gastronomia</a>
-            <a href="#">Baixa Gastronomia</a>
-            <a href="#">Gastronomia Sustentável</a>
-            <a href="#">Gastronomia Vegana</a>
+            <a href="#" class="color2">Alta Gastronomia</a>
+            <a href="#" class="color2">Baixa Gastronomia</a>
+            <a href="#" class="color2">Gastronomia Sustentável</a>
+            <a href="#" class="color2">Gastronomia Vegana</a>
         </nav>
-        <div class="header-actions">
-            <input type="text" placeholder="procurar receita" class="search-input">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-        </div>
     </div>
 </header>
 
 <div class="container mt-5">
-    <div class="text-end mb-3">
-        <button class="btn btn-primary color2" onclick="openCategoryModal()">Adicionar Categoria</button>
+<!--PENSANDO SE VOU RETIRAR -->
+<div class="text-center mb-3">
+        <button class="btn-add-category color2" onclick="openCategoryModal()">Adicionar Categoria</button>
     </div>
-
-    <table class="table table-bordered">
-        <tbody id="categoryTableBody" class="color5">
-        </tbody>
-    </table>
 </div>
 
-<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+<!--PENSANDO SE VOU RETIRAR -->
+<div class="modal" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body color5">
+        <div class="modal-content color5">
+            <div class="modal-header color3">
+                <h5 class="modal-title color1" id="categoryModalLabel">Adicionar Categoria</h5>
+                <button type="button" class="btn-close" onclick="closeCategoryModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 <form id="categoryForm" onsubmit="saveCategory(event)">
                     <input type="hidden" id="categoryId">
                     <div class="mb-3">
-                        <input type="text" class="form-control color4" id="categoryName" required placeholder="Nome da Categoria">
+                        <label for="categoryName" class="form-label color1">Nome da Categoria</label>
+                        <input type="text" class="form-control color4" id="categoryName" required>
                     </div>
-                    <button type="submit" class="btn btn-primary color3">Salvar</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" onclick="closeCategoryModal()">Cancelar</button>
+                        <button type="submit" class="btn-save color3">Salvar</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js"></script>
+<script src="js/categorias.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Receitas - Receitas por Categoria</title>
+    <!-- CSS Personalizado -->
+    <link href="css/receitas.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Seção de Categorias -->
+<div class="container">
+    <h1 class="section-title">Categorias</h1>
+    <div class="categories">
+        <button class="btn-category" onclick="loadRecipesByCategory('alta_gastronomia')">Alta Gastronomia</button>
+        <button class="btn-category" onclick="loadRecipesByCategory('baixa_gastronomia')">Baixa Gastronomia</button>
+        <button class="btn-category" onclick="loadRecipesByCategory('gastronomia_sustentavel')">Gastronomia Sustentável</button>
+        <button class="btn-category" onclick="loadRecipesByCategory('gastronomia_vegana')">Gastronomia Vegana</button>
+    </div>
+</div>
+
+<!-- Listagem de Receitas -->
+<div class="container mt-5">
+    <h2 class="section-title">Receitas</h2>
+    <div class="text-end mb-3">
+        <button class="btn-add-recipe" onclick="openRecipeModal()">Adicionar Receita</button>
+    </div>
+    <table class="table-recipes">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="recipeTableBody">
+            <!-- As receitas serão listadas aqui via JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal para adicionar/editar receita -->
+<div class="modal" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="recipeModalLabel">Adicionar Receita</h5>
+                <button type="button" class="btn-close" onclick="closeRecipeModal()" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="recipeForm" onsubmit="saveRecipe(event)">
+                    <input type="hidden" id="recipeId">
+                    <div class="mb-3">
+                        <label for="recipeName" class="form-label">Nome da Receita</label>
+                        <input type="text" class="form-control" id="recipeName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipeDescription" class="form-label">Descrição</label>
+                        <textarea class="form-control" id="recipeDescription" required></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" onclick="closeRecipeModal()">Cancelar</button>
+                        <button type="submit" class="btn-save">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="js/receitas.js"></script>
+
+</body>
+</html>
