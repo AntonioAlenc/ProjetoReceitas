@@ -9,16 +9,16 @@
 </head>
 <body>
 
-<!-- Seção de Categorias -->
+<!-- Seção de Categorias 
 <div class="container">
     <h1 class="section-title">Categorias</h1>
     <div class="categories">
-        <button class="btn-category" onclick="loadRecipesByCategory('alta_gastronomia')">Alta Gastronomia</button>
-        <button class="btn-category" onclick="loadRecipesByCategory('baixa_gastronomia')">Baixa Gastronomia</button>
-        <button class="btn-category" onclick="loadRecipesByCategory('gastronomia_sustentavel')">Gastronomia Sustentável</button>
-        <button class="btn-category" onclick="loadRecipesByCategory('gastronomia_vegana')">Gastronomia Vegana</button>
+        <button class="btn-category" onclick="loadRecipesByCategory(1)">Alta Gastronomia</button>
+        <button class="btn-category" onclick="loadRecipesByCategory(2)">Baixa Gastronomia</button>
+        <button class="btn-category" onclick="loadRecipesByCategory(3)">Gastronomia Sustentável</button>
+        <button class="btn-category" onclick="loadRecipesByCategory(4)">Gastronomia Vegana</button>
     </div>
-</div>
+</div>-->
 
 <!-- Listagem de Receitas -->
 <div class="container mt-5">
@@ -30,7 +30,8 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Descrição</th>
+                <th>Ingredientes</th>
+                <th>Modo de Preparo</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -56,8 +57,21 @@
                         <input type="text" class="form-control" id="recipeName" required>
                     </div>
                     <div class="mb-3">
-                        <label for="recipeDescription" class="form-label">Descrição</label>
-                        <textarea class="form-control" id="recipeDescription" required></textarea>
+                        <label for="recipeIngredients" class="form-label">Ingredientes</label>
+                        <textarea class="form-control" id="recipeIngredients" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipePreparation" class="form-label">Modo de Preparo</label>
+                        <textarea class="form-control" id="recipePreparation" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipeCategory" class="form-label">Categoria</label>
+                        <select class="form-control" id="recipeCategory" required>
+                            <!-- <option value="1">Alta Gastronomia</option>
+                            <option value="2">Baixa Gastronomia</option>
+                            <option value="3">Gastronomia Sustentável</option>
+                            <option value="4">Gastronomia Vegana</option> -->
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel" onclick="closeRecipeModal()">Cancelar</button>
@@ -71,6 +85,11 @@
 
 <!-- JavaScript -->
 <script src="js/receitas.js"></script>
+<script src="js/categorias.js"></script>
+
+<script>
+    loadCategories();
+</script>
 
 </body>
 </html>

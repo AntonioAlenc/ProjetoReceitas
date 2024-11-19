@@ -127,3 +127,41 @@
 .btn-cancel:hover {
     background-color: #d07a5d;
 }
+
+/* Notificação */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+.notification.success {
+    background-color: #28a745; /* Verde para sucesso */
+}
+
+.notification.error {
+    background-color: #dc3545; /* Vermelho para erro */
+}
+
+.divBtnTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.divBtnTable button {
+    background: transparent;
+    border: none;
+}
+
+.divBtnTable button:hover {
+    background-color: #000;
+    color: #fff;
+}

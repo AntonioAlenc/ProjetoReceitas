@@ -30,6 +30,22 @@
     </div>
 </div>
 
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody id="tbdoy-categorias">
+
+        </tbody>
+    </table>
+</div>
+
 <!--PENSANDO SE VOU RETIRAR -->
 <div class="modal" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -47,7 +63,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel" onclick="closeCategoryModal()">Cancelar</button>
-                        <button type="submit" class="btn-save color3">Salvar</button>
+                        <button type="button" class="btn-save color3" onclick="createCategory()">Salvar</button>
                     </div>
                 </form>
             </div>
