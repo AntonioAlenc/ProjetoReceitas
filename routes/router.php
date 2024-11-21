@@ -3,8 +3,8 @@
 use App\Controllers\CategoriaController;
 use App\Controllers\ReceitaController;
 
-require_once './app/controllers/CategoriaController.php';
-require_once './app/controllers/ReceitaController.php';
+require_once '../app/controllers/CategoriaController.php';
+require_once '../app/controllers/ReceitaController.php';
 
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];

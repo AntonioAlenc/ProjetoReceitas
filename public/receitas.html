@@ -9,17 +9,18 @@
 <body>
 
 <div class="container mt-5">
-    <h2 class="section-title">Receitas</h2>
+    <h2 class="section-title">RECEITAS</h2>
     <div class="text-end mb-3">
+        <button class="btn-go-to" onclick="window.location.href='categorias.html'">Voltar para Categorias</button>
         <button class="btn-add-recipe" onclick="openRecipeModal()">Adicionar Receita</button>
     </div>
     <table class="table-recipes">
         <thead>
             <tr>
-                <th>Nome</th>
-                <th>Ingredientes</th>
-                <th>Modo de Preparo</th>
-                <th>Ações</th>
+                <th style="width: 15%;">Nome</th>
+                <th style="width: 25%;">Ingredientes</th>
+                <th style="width: 45%;">Modo de Preparo</th>
+                <th style="width: 15%;">Ações</th>
             </tr>
         </thead>
         <tbody id="recipeTableBody">
