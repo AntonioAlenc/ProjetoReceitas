@@ -1,27 +1,41 @@
 # ProjetoReceitas
 
-# Site de Receitas 🍲
+# ProjetoReceitas 📚🍲
 
-Este é um site de receitas onde os usuários podem explorar uma coleção diversificada de receitas organizadas em categorias como Alta Gastronomia, Baixa Gastronomia, Gastronomia Sustentável e Gastronomia Vegana.
+Um site pensado para substituir aquele velho livro de receitas, trazendo suas melhores anotações para o mundo digital. Com o **ProjetoReceitas**, você pode organizar, editar e explorar suas receitas favoritas de forma prática e moderna!
 
-## Funcionalidades
-- **Navegação por Categorias**: Receitas organizadas em categorias para fácil acesso.
-- **Visualização de Receitas**: Usuários podem explorar receitas detalhadas, incluindo ingredientes e modo de preparo.
+## 🌟 Funcionalidades
 
-## Público-Alvo
+- **Criação de Categorias**: Organize suas receitas como preferir, criando suas próprias categorias personalizadas.
+- **Edição de Categorias**: Atualize categorias existentes para manter suas separações sempre completas.
+- **Exclusão de Categorias**: Remova receitas ou categorias que não deseja mais manter.
+- **Cadastro de Receitas**: Adicione novas receitas, incluindo ingredientes, modo de preparo e categorias.
+- **Edição de Receitas**: Atualize receitas existentes para manter suas anotações sempre completas.
+- **Exclusão de Receitas**: Remova receitas ou categorias que não deseja mais manter.
+- **Visualização de Receitas e Categorias**: Explore detalhes como ingredientes, modo de preparo e categoria.
 
-Ideal para pessoas interessadas em culinária, que buscam novas receitas e desejam explorar diferentes estilos gastronômicos.
+## 🎯 Público-Alvo
 
-## Tecnologias
+Este site é ideal para:
+- Amantes de culinária que querem abandonar o livro de receitas físico e adotar uma solução digital.
+- Pessoas que desejam organizar receitas de forma personalizada, criando suas próprias categorias.
+- Culinários que buscam um local centralizado para suas melhores criações e anotações.
 
-- **Front-end**: HTML, CSS, JavaScript
-- **Back-end**: PHP puro e MySQL
+## 🛠️ Tecnologias Utilizadas
 
-## Dependências
-- **PDO**: Conexão com o MySQL
-- **Sessões PHP**: Gerenciamento básico de visualização
+### Front-end
+- **HTML**
+- **CSS**
+- **JavaScript**
 
----
+### Back-end
+- **PHP** (Puro)
+- **PostgreSQL** (PgSQL)
+
+### Dependências
+- **PDO**: Para conexão segura com o banco de dados PostgreSQL.
+- **Sessões PHP**: Para gerenciar interações no site.
+
 
 ## Diagrama ER do Banco de Dados
 
