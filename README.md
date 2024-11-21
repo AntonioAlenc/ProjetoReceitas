@@ -1,4 +1,3 @@
-# ProjetoReceitas
 
 # ProjetoReceitas 📚🍲
 
