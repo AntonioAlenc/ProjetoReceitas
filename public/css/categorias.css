@@ -1,97 +1,164 @@
-.main-header {
-    padding: 10px 0; 
-    display: flex;
-    align-items: center;
-    background-color: #ffeeac;
-    border-bottom: 2px solid #e1b365;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    text-align: center; /* Centraliza o conteúdo */
 }
 
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 800px; /* Tamanho limitado para centralizar */
+    margin: 20px auto; /* Centraliza o container */
 }
 
-.header-logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo-img {
-    width: 40px;
-    height: auto;
-}
-
-.nav-menu a {
-    display: inline-block;
-    margin: 0 10px;
-    padding: 8px 15px;
-    background-color: #e48b69;
-    color: white;
-    font-size: 16px;
+.section-title {
+    font-size: 28px;
+    color: #674f23;
     font-weight: bold;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px;
 }
 
-.nav-menu a:hover {
-    background-color: #d07a5d;
-    transform: scale(1.05);
-}
-
-.btn-add-category {
-    padding: 12px 20px;
-    background-color: #e48b69;
+.btn-add {
+    background-color: #f28c28; /* Laranja */
+    color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Garante centralização em linha */
+}
+
+.btn-add:hover {
+    background-color: #d77a1f; /* Tom mais escuro */
+}
+
+.btn-go-to {
+    background-color: #f28c28; /* Laranja */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Garante centralização em linha */
     transition: background-color 0.3s ease;
 }
 
-.btn-add-category:hover {
-    background-color: #d07a5d;
+.btn-go-to:hover {
+background-color: #d77a1f; /* Tom mais escuro */}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaçamento entre os botões */
+    margin-bottom: 20px;
+}
+
+
+
+.table-recipes {
+    width: 80%; /* Reduz a largura para centralização */
+    margin: 0 auto; /* Centraliza a tabela */
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+.table-recipes th,
+.table-recipes td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #e1b365; /* Cor dourada para as bordas */
+    font-size: 14px; /* Tamanho menor */
+}
+
+.table-recipes th {
+    background-color: #f28c28; /* Laranja */
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.table-recipes tr:nth-child(even) {
+    background-color: #fff8e1; /* Fundo claro */
+}
+
+.table-recipes tr:hover {
+    background-color: #fce5d6; /* Tom mais claro */
 }
 
 .modal {
-    display: none;
+    display: none; /* Inicialmente oculto */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5); /* Fundo escuro com opacidade */
     justify-content: center;
     align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
 }
 
 .modal-dialog {
-    background-color: #ffeeac;
+    background-color: white;
     border-radius: 8px;
     width: 100%;
-    max-width: 400px;
+    max-width: 400px; /* Tamanho máximo para o modal */
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao redor */
+    animation: slideIn 0.3s ease; /* Animação ao abrir */
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e48b69;
-    padding: 15px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s ease;
+}
+
+.btn-close:hover {
+    color: #000;
 }
 
 .modal-body {
-    padding: 20px;
+    padding: 20px 0;
+    font-size: 16px;
+    color: #333;
 }
 
 .modal-footer {
@@ -99,9 +166,11 @@
     justify-content: flex-end;
     gap: 10px;
     padding-top: 10px;
+    border-top: 1px solid #ddd;
 }
 
-.btn-save, .btn-cancel {
+.btn-cancel,
+.btn-save {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -110,58 +179,36 @@
     transition: background-color 0.3s ease;
 }
 
-.btn-save {
-    background-color: #e1b365;
+.btn-cancel {
+    background-color: #f44336; /* Vermelho */
     color: white;
 }
 
-.btn-cancel {
-    background-color: #e48b69;
+.btn-cancel:hover {
+    background-color: #d32f2f; /* Vermelho mais escuro */
+}
+
+.btn-save {
+    background-color: #4CAF50; /* Verde */
     color: white;
 }
 
 .btn-save:hover {
-    background-color: #d1a453;
+    background-color: #388E3C; /* Verde mais escuro */
 }
 
-.btn-cancel:hover {
-    background-color: #d07a5d;
-}
-
-/* Notificação */
-.notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 20px;
-    color: white;
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    z-index: 1000;
-    font-weight: bold;
-    opacity: 0.9;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
 }
 
-.notification.success {
-    background-color: #28a745; /* Verde para sucesso */
-}
-
-.notification.error {
-    background-color: #dc3545; /* Vermelho para erro */
-}
-
-.divBtnTable {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.divBtnTable button {
-    background: transparent;
-    border: none;
-}
-
-.divBtnTable button:hover {
-    background-color: #000;
-    color: #fff;
+.form-control:focus {
+    border-color: #4CAF50; /* Verde ao focar */
+    outline: none;
 }

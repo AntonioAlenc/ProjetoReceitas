@@ -8,7 +8,7 @@ class database {
     private static $host = 'localhost';
     private static $dbName = 'projeto_receitas'; 
     private static $username = 'postgres'; 
-    private static $password = 'unigran'; 
+    private static $password = 'root'; 
     private static $port = '5432'; 
 
 

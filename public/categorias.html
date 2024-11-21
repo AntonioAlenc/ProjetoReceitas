@@ -9,61 +9,45 @@
 </head>
 <body>
 
-<header class="main-header color5">
-    <div class="container">
-        <div class="header-logo">
-            <img src="logo.png" alt="Logotipo" class="logo-img">
-        </div>
-        <nav class="nav-menu">
-            <a href="#" class="color2">Alta Gastronomia</a>
-            <a href="#" class="color2">Baixa Gastronomia</a>
-            <a href="#" class="color2">Gastronomia Sustentável</a>
-            <a href="#" class="color2">Gastronomia Vegana</a>
-        </nav>
-    </div>
+<header>
+    <h1>Categorias</h1>
 </header>
 
-<div class="container mt-5">
-<!--PENSANDO SE VOU RETIRAR -->
-<div class="text-center mb-3">
-        <button class="btn-add-category color2" onclick="openCategoryModal()">Adicionar Categoria</button>
+<main class="content">
+    <div class="btn-group">
+        <button class="btn-add" onclick="openCategoryModal()">Adicionar Categoria</button>
+        <button class="btn-go-to" onclick="window.location.href='receitas.html'">Ir para Receitas</button>
     </div>
-</div>
-
-<div>
-    <table>
+    <table class="table-recipes">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Nome</th>
                 <th>Ações</th>
             </tr>
         </thead>
-
-        <tbody id="tbdoy-categorias">
-
+        <tbody id="categoryTableBody">
         </tbody>
     </table>
-</div>
+</main>
 
-<!--PENSANDO SE VOU RETIRAR -->
 <div class="modal" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content color5">
-            <div class="modal-header color3">
-                <h5 class="modal-title color1" id="categoryModalLabel">Adicionar Categoria</h5>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoryModalLabel">Adicionar Categoria</h5>
                 <button type="button" class="btn-close" onclick="closeCategoryModal()" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="categoryForm" onsubmit="saveCategory(event)">
                     <input type="hidden" id="categoryId">
                     <div class="mb-3">
-                        <label for="categoryName" class="form-label color1">Nome da Categoria</label>
-                        <input type="text" class="form-control color4" id="categoryName" required>
+                        <label for="categoryName" class="form-label">Nome da Categoria</label>
+                        <input type="text" class="form-control" id="categoryName" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel" onclick="closeCategoryModal()">Cancelar</button>
-                        <button type="button" class="btn-save color3" onclick="createCategory()">Salvar</button>
+                        <button type="submit" class="btn-save">Salvar</button>
                     </div>
                 </form>
             </div>

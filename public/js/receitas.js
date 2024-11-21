@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadAllRecipes();
+    loadCategories(); // Carregar categorias ao iniciar
 });
 
 // Função para carregar todas as receitas
@@ -19,9 +20,9 @@ function renderRecipes(recipes) {
         const row = document.createElement('tr');
         row.id = `row-${recipe.id}`;
         row.innerHTML = `
-            <td id="recipe-name-${recipe.id}">${recipe.nome}</td>
-            <td id="recipe-ingredientes-${recipe.id}">${recipe.ingredientes}</td>
-            <td id="recipe-modo_preparo-${recipe.id}">${recipe.modo_preparo}</td>
+            <td>${recipe.nome}</td>
+            <td>${recipe.ingredientes}</td>
+            <td>${recipe.modo_preparo}</td>
             <td>
                 <button class="btn btn-sm btn-secondary" onclick="openRecipeModal(${recipe.id})">Editar</button>
                 <button class="btn btn-sm btn-danger" onclick="deleteRecipe(${recipe.id})">Excluir</button>
@@ -31,7 +32,32 @@ function renderRecipes(recipes) {
     });
 }
 
-// Abre o modal para adicionar ou editar uma receita
+// Carrega categorias e preenche o combo box
+function loadCategories() {
+    fetch('http://localhost:8000/categorias')
+        .then(response => response.json())
+        .then(categories => {
+            preencheComboCat(categories); // Preenche o combo box
+        })
+        .catch(error => console.error("Erro ao carregar categorias:", error));
+}
+
+function preencheComboCat(categories) {
+    console.log("oiii")
+    const recipeCategory = document.getElementById('recipeCategory');
+    
+    if (!recipeCategory) {
+        console.error('Elemento recipeCategory não encontrado no DOM');
+        return;
+    }
+
+    recipeCategory.innerHTML = '<option value="" disabled selected>Selecione uma Categoria</option>';
+    
+    categories.forEach(category => {
+        recipeCategory.innerHTML += `<option value="${category.id}">${category.nome}</option>`;
+    });
+}
+
 function openRecipeModal(id = null) {
     const modalTitle = document.getElementById('recipeModalLabel');
     const recipeId = document.getElementById('recipeId');
@@ -43,15 +69,14 @@ function openRecipeModal(id = null) {
     if (id) {
         modalTitle.textContent = 'Editar Receita';
         recipeId.value = id;
-        
-        // Requisição para carregar os dados da receita selecionada
+
         fetch(`http://localhost:8000/receitas/${id}`)
             .then(response => response.json())
             .then(recipe => {
                 recipeName.value = recipe.nome;
                 recipeIngredients.value = recipe.ingredientes;
                 recipePreparation.value = recipe.modo_preparo;
-                recipeCategory.value = recipe.categoria_id; // Define o valor da categoria
+                recipeCategory.value = recipe.categoria_id;
             })
             .catch(error => console.error("Erro ao carregar a receita:", error));
     } else {
@@ -66,12 +91,10 @@ function openRecipeModal(id = null) {
     document.getElementById('recipeModal').style.display = 'flex';
 }
 
-// Fecha o modal de receita
 function closeRecipeModal() {
     document.getElementById('recipeModal').style.display = 'none';
 }
 
-// Função para salvar uma receita (criar ou atualizar)
 function saveRecipe(event) {
     event.preventDefault();
     const id = document.getElementById('recipeId').value;
@@ -92,8 +115,6 @@ function saveRecipe(event) {
         categoria_id: categoryId
     };
 
-    console.log(JSON.stringify(recipeData))
-
     if (id) {
         updateRecipe(id, recipeData);
     } else {
@@ -101,7 +122,6 @@ function saveRecipe(event) {
     }
 }
 
-// Cria uma nova receita
 function createRecipe(recipe) {
     fetch('http://localhost:8000/receitas', {
         method: 'POST',
@@ -121,7 +141,6 @@ function createRecipe(recipe) {
     .catch(error => console.error("Erro ao criar receita:", error));
 }
 
-// Atualiza uma receita existente
 function updateRecipe(id, recipe) {
     fetch(`http://localhost:8000/receitas/${id}`, {
         method: 'PUT',
@@ -141,7 +160,6 @@ function updateRecipe(id, recipe) {
     .catch(error => console.error("Erro ao atualizar receita:", error));
 }
 
-// Exclui uma receita
 function deleteRecipe(id) {
     if (confirm('Tem certeza que deseja excluir esta receita?')) {
         fetch(`http://localhost:8000/receitas/${id}`, {
@@ -160,7 +178,6 @@ function deleteRecipe(id) {
     }
 }
 
-// Função para exibir notificações de sucesso ou erro
 function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
